@@ -1,30 +1,39 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { PropTypes } from 'react';
+import NotesContainer from '..Note/NotesContainer';
 
 // Import Style
 import styles from './Lane.css';
 
-class Lane extends Component {
-  render() {
+const Lane = (props) => {
+const { lane, laneNotes, updateLane, addNote, deleteLane } = props;
+const laneId = lane.id;
+
     return (
+      <div className={styles.Lane}>
+          <div className={styles.LaneHeader}>
+              <div className={styles.LaneAddNote}>
+                  <button onClick={() => addNote({ task: 'New Note'}, laneId )}>Add Note</button>
+              </div>
+              <h4>{lane.name}</h4>
+              <div className={styles.LaneDelete}>
+                  <button onClick={() => deleteLane(laneId)}>Remove Lane</button>
+              </div>
+          </div>
+          <NotesContainer
+            notes={laneNotes}
+            laneId={laneId}
+          />
+      </div>
     );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
 
 Lane.propTypes = {
+  lane: PropTypes.opbject,
+  laneNotes: PropTypes.array,
+  addNote: PropTypes.func,
+  updateLane: PropTypes.func,
+  deleteLane: PropTypes.func,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Lane);
+export default Lane;
