@@ -1,1 +1,5 @@
 /* Note styles */
+
+.Note {
+  list-style: none;
+}
