@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Notes form './Notes';
+import Notes from './Notes';
 import * as noteActions from '../Note/NoteActions';
 
 const mapDispatchToProps = {
