@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Note from './Note';
 import Edit from '../../components/Edit.js';
-import { editNote, updateNote, deleteNote } from './NoteActions.js';
+import { editNote, updateNote, deleteRequest } from './NoteActions.js';
 import styles from './Notes.css';
 
 const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
@@ -16,9 +16,9 @@ const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
           editing={note.editing}
           value={note.task}
           onValueClick={() => editNote(note.id)}
-          onUpdate={(task) => updateNOte({
+          onUpdate={(task) => updateNote({
             ...note,
-            taks,
+            task,
             editing: false,
           }
         )}
@@ -29,7 +29,7 @@ const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
 };
 
 Notes.propTypes = {
-  deleteNote: PropTypes.func,
+  deleteNoteRequest: PropTypes.func,
   updateNote: PropTypes.func,
   editNote: PropTypes.func,
   laneId: PropTypes.string,
