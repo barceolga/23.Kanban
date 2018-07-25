@@ -51,7 +51,11 @@ export function deleteLane(laneId) {
     laneId,
   };
 }
-
+export function deleteNoteRequest(laneId) {
+  return (dispatch) => {
+    return callApi(`lane/${laneId}`, 'delete').then(() => dispatch(deleteLane(laneId)));
+  };
+}
 export function editLane(laneId) {
   return {
     type: EDIT_LANE,
@@ -64,7 +68,7 @@ export function fetchLanes() {
     return callApi('lanes').then(res => {
       const normalized = normalize(res.lanes, lanes);
       const { lanes: normalizedLanes, notes } = normalized.entities;
-      dispatch(createLanes(normalizedlanes));
+      dispatch(createLanes(normalizedLanes));
       dispatch(createNotes(notes));
     })
   }
