@@ -19,6 +19,9 @@ function PostList(props) {
     </div>
   );
 }
+PostList.defaultProps = {
+  posts: [],
+};
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
