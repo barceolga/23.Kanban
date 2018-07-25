@@ -11,7 +11,7 @@ export function createNote(note, laneId) {
     type: CREATE_NOTE,
     laneId,
     note: {
-      id: uuid();
+      id: uuid(),
       ...note,
     },
   };
