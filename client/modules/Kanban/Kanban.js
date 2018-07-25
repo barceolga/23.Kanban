@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Lanes from '../Lane/Lanes';
+import { createNote } from '../Note/NoteActions';
+import * as laneActions from '../Lane/LaneActions';
 import { createLaneRequest, fetchLanes } from '../Lane/LaneActions';
 
 // Import Style
