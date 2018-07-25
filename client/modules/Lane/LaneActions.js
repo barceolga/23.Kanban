@@ -12,7 +12,7 @@ export function createLane(lane) {
   return {
     type: CREATE_LANE,
     lane: {
-      id: uuid();
+      id: uuid(),
       notes: [],
       ...lane,
     }
