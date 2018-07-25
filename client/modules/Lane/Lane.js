@@ -37,7 +37,7 @@ const laneId = lane.id;
 
 
 Lane.propTypes = {
-  lane: PropTypes.opbject,
+  lane: PropTypes.object,
   laneNotes: PropTypes.array,
   addNote: PropTypes.func,
   updateLane: PropTypes.func,
