@@ -11,6 +11,7 @@ export function addNote(req, res) {
 
   const newNote = new Note({
     task: note.task,
+    laneId: laneId,
   });
 
   newNote.id = uuid();
@@ -36,13 +37,13 @@ export function deleteNote(req, res) {
       res.status(500).send(err);
     }
 
-      Lane.findOne({ id: req.body.laneId }).exec((err, lane) => {
+      Lane.findOne({ id: note.laneId }).exec((err, lane) => {
         const updatedNotes = lane.notes.filter(note => note.id !== noteId);
         lane.notes = updatedNotes;
-        lane.save(() => {
-          note.remove(() => {
-            res.status(200).end();
-          });
+        updatedNotes.save(() => {
+            note.remove(() => {
+              res.status(200).end();
+            });
         });
       });
     });
