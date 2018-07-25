@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Lane from './Lane';
-import { deleteLane, updateLane, editLane } from './LaneActions';
-import { createNote } from '../Note/NoteActions';
+import { deleteLane, updateLane, editLane, deleteLaneRequest } from './LaneActions';
+import { createNoteRequest } from '../Note/NoteActions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps =  {
   editLane,
-  deleteLane,
+  deleteLane: deleteLaneRequest,
   updateLane,
   addNote: createNoteRequest,
 };
