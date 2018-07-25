@@ -40,7 +40,7 @@ export function deleteNote(req, res) {
       Lane.findOne({ id: note.laneId }).exec((err, lane) => {
         const updatedNotes = lane.notes.filter(note => note.id !== noteId);
         lane.notes = updatedNotes;
-        updatedNotes.save(() => {
+        lane.save(() => {
             note.remove(() => {
               res.status(200).end();
             });
