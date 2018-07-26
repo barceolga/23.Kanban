@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Note from './Note';
 import Edit from '../../components/Edit.js';
-import { editNote, updateNote, deleteRequest } from './NoteActions.js';
+import { editNote, updateNote, deleteNote } from './NoteActions.js';
 import styles from './Notes.css';
 
 const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
   return (<ul className='notes'>{notes.map((note) =>
     <Note
-      id={note.id}
+      //id={note.id}
       key={note.id}
       editing={note.editing}
       >
