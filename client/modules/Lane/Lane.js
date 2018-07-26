@@ -6,11 +6,11 @@ import Edit from '../../components/Edit.js';
 import styles from './Lane.css';
 
 const Lane = (props) => {
-const { lane, laneNotes, updateLane, addNote, deleteLane } = props;
+const { lane, laneNotes, updateLane, addNote, editLane, deleteLane } = props;
 const laneId = lane.id;
 
     return (
-      <div className={styles.Lane}>
+      <div className={styles.Lane} key={laneId}>
           <div className={styles.LaneHeader}>
               <div className={styles.LaneAddNote}>
                   <button onClick={() => addNote({ task: 'New Note'}, laneId )}>Add Note</button>
@@ -19,7 +19,7 @@ const laneId = lane.id;
                     className={styles.LaneName}
                     editing={lane.editing}
                     value={lane.name}
-                    onValueClick={() => editLane(lane.id)}
+                    onValueClick={() => editLane(laneId)}
 
                     onUpdate={name => updateLane({...lane, name, editing: false})}
               />
