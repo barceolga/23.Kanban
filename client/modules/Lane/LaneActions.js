@@ -53,7 +53,7 @@ export function deleteLane(laneId) {
 }
 export function deleteLaneRequest(laneId) {
   return (dispatch) => {
-    return callApi(`lane/${laneId}`, 'delete').then(() => {
+    return callApi(`lanes/${laneId}`, 'delete').then(() => {
       dispatch(deleteLane(laneId));
     });
   }
