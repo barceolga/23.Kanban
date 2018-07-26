@@ -40,18 +40,14 @@ export function deleteLane(req, res) {
 }
 
 export function editLaneName (req, res) {
-  const laneId = req.params.laneId;
-  Lane.findOne({ id: laneId }).exec((err, lane) => {
+  if(!req.body.name) {
+    res.status(400).end();
+  }
+
+  Lane.findOneAndUpdate({ id: req.params.laneId }, { name: req.body.name }).exec(err => {
     if (err) {
       res.status(500).send(err);
     }
-    const newLaneName = req.body.name;
-    lane.name = newLaneName;
-    lane.save((err, laneSaved) => {
-      if(err) {
-        res.status(500).end();
-      }
-      res.json(laneSaved);
-    });
-  });
+    res.status(200).end();
+  })
 }
