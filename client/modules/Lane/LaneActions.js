@@ -51,16 +51,26 @@ export function deleteLane(laneId) {
     laneId,
   };
 }
-export function deleteNoteRequest(laneId) {
+export function deleteLaneRequest(laneId) {
   return (dispatch) => {
-    return callApi(`lane/${laneId}`, 'delete').then(() => dispatch(deleteLane(laneId)));
-  };
+    return callApi(`lane/${laneId}`, 'delete').then(() => {
+      dispatch(deleteLane(laneId));
+    });
+  }
 }
 export function editLane(laneId) {
   return {
     type: EDIT_LANE,
     laneId,
   };
+}
+
+export function updateLaneRequest(lane) {
+  return dispatch => {
+    return callApi(`lanes/${lane.id}`, 'put',  { name: lane.name }).then(() => {
+      dispatach(updateLane(lane));
+    });
+  }
 }
 
 export function fetchLanes() {
