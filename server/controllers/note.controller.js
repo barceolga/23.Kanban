@@ -11,7 +11,7 @@ export function addNote(req, res) {
 
   const newNote = new Note({
     task: note.task,
-    laneId: laneId,
+    //laneId: laneId,
   });
 
   newNote.id = uuid();
