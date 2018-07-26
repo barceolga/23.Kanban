@@ -7,15 +7,15 @@ import * as laneActions from '../Lane/LaneActions';
 import { createLaneRequest, fetchLanes } from '../Lane/LaneActions';
 
 // Import Style
-import styles from '../Lane/Lane.css';
+import styles from './Kanban.css';
 
 const Kanban = (props) => (
-  <div>
+  <div className={styles.kanban}>
       <button className={styles.AddLane}
        onClick={() => props.createLane({
          name: 'New lane',
        })}
-      >AddLane</button>
+      >Add Lane</button>
       <Lanes lanes={props.lanes} />
   </div>
 );
