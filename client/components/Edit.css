@@ -7,20 +7,25 @@
   font-weight: 400;
   transition: 1s linear;
   border-top: 5px;
+  padding: 10px;
 }
+
 .delete:hover{
   background-color: #fff;
   color: red;
 }
 .value {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 600;
   color: navy;
+  padding: 10px;
 }
 .edit {
   font-size: 15px;
   font-weight: 400;
-  color: grey;
-  width: 120px;
+  color: green;
+  width: auto;
   height: auto;
+  border: none;
+  padding: 10px;
 }

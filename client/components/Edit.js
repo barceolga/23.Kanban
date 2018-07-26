@@ -13,13 +13,15 @@ export default class Edit extends Component {
     if (this.props.onUpdate) {
       this.props.onUpdate(value.trim());
     }
-
   }
+
   renderDelete = () => {
     return <button className={styles.delete} onClick={this.props.onDelete}>x</button>
   }
+
   renderValue = () => {
     const { value, onDelete, onValueClick } = this.props;
+
     return (
       <div>
           <span className={styles.value} onClick={onValueClick}>{value}</span>
@@ -27,6 +29,7 @@ export default class Edit extends Component {
       </div>
     );
   }
+
   renderEdit = () => {
     return (
       <input
@@ -38,8 +41,8 @@ export default class Edit extends Component {
         onKeyPress={this.checkEnter}
       />
     );
-
   }
+
   render() {
 
       return (
@@ -47,7 +50,6 @@ export default class Edit extends Component {
             {this.props.editing ? this.renderEdit() : this.renderValue()}
         </div>
       );
-
   }
 }
 
