@@ -5,7 +5,7 @@ import { CREATE_NOTE, DELETE_NOTE } from '../Note/NoteActions.js';
 import omit from 'lodash/omit';
 
 // Initial State
-const initialState = [];
+const initialState = {};
 
 export default function lanes(state = initialState, action) {
   switch (action.type) {
@@ -22,7 +22,7 @@ export default function lanes(state = initialState, action) {
         return { ...state, [action.laneId]: newLane };
     }
     case DELETE_NOTE:
-        const newLane = {...state[action.laneId] };
+        const newLane = { ...state[action.laneId] };
         newLane.notes = newLane.notes.filter(noteId => noteId !== action.noteId);
 
         return {...state, [action.laneId]: newLane };
