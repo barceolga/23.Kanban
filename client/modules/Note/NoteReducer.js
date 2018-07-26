@@ -5,7 +5,7 @@ import { CREATE_NOTE, CREATE_NOTES, UPDATE_NOTE, DELETE_NOTE, EDIT_NOTE } from '
 import omit from 'lodash/omit';
 
 // Initial State
-const initialState = [];
+const initialState = {};
 
 export default function notes(state = initialState, action) {
   switch (action.type) {
