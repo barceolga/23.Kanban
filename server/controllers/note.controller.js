@@ -11,10 +11,10 @@ export function addNote(req, res) {
 
   const newNote = new Note({
     task: note.task,
-    //laneId: laneId,
+    laneId: laneId,
+    id: uuid(),
   });
 
-  newNote.id = uuid();
   newNote.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
@@ -22,10 +22,15 @@ export function addNote(req, res) {
     Lane.findOne({ id: laneId })
       .then(lane => {
         lane.notes.push(saved);
+        console.log(saved);
         return lane.save();
       })
       .then(() => {
         res.json(saved);
+      })
+      .catch((err) => {
+        console.log('err');
+        console.log(err);
       });
   });
 }
@@ -63,6 +68,10 @@ export function editNote(req, res) {
         res.status(500).end();
       }
       res.json(noteSaved);
+    })
+    .catch((err) => {
+      console.log('err');
+      console.log(err);
     });
   });
 }
