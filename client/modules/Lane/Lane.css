@@ -2,55 +2,57 @@
 .Lane {
   display: flex;
   align-items: flex-start;
-}
-.Lane. .AddLane {
-  width: 100px;
-  height: auto;
-  color: #fff;
-  background-color: blue;
-  font-size: 18px;
-  font-weight: 400;
-  transition: 1s linear;
-  border-top: 5px;
-}
-.Lane .LaneHeader .LaneAddNote button:hover {
-  background-color: #fff;
-  color: blue;
+  flex-direction: column;
+  height: 55vh;
+  background-color: #ccc;
+  margin: 0 5px;
 }
 .Lane .LaneHeader {
-  height: 25vh;
+  height: 15vh;
   width: 33vh;
   background-color: beige;
+  display: flex;
+  align-items: center;
 }
-.Lane .LaneHeader .LaneAddNote button {
-  width: 100px;
+.LaneAddNote {
+  margin: 0 5px;
+}
+.LaneAddNote button {
+  width: 60px;
   height: auto;
   color: #fff;
   background-color: blue;
-  font-size: 18px;
-  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 300;
   transition: 1s linear;
-  border-top: 5px;
+
 }
-.Lane .LaneHeader .LaneAddNote button:hover {
+.LaneAddNote button:hover {
   background-color: #fff;
   color: blue;
 }
-.Lane .LaneHeader h4 {
+.LaneHeader h4 {
   font-size: 24px;
   font-weight: 600;
   color: navy;
+  text-align: center;
 }
 
-Lane .LaneHeader .LaneDelete button {
-  width: 100px;
+.LaneDelete {
+  margin: 0 5px;
+}
+.LaneDelete button {
+  width: 80px;
   height: auto;
   color: #fff;
   background-color: red;
-  font-size: 18px;
-  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 300;
   transition: 1s linear;
-  border-top: 5px;
 }
 
 .Lane .LaneHeader .LaneDelete button:hover {
