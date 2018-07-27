@@ -1,6 +1,4 @@
 import callApi from '../../util/apiCaller';
-//import { lanes } from '../../util/schema';
-//import { normalize } from 'normalizr';
 
 // Export Constants
 export const CREATE_NOTE = 'CREATE_NOTE';
@@ -22,14 +20,14 @@ export function createNotes(notesData) {
   return {
     type: CREATE_NOTES,
     notes: notesData,
-  }
+  };
 }
 export function createNoteRequest(note, laneId) {
   return (dispatch) => {
-    return callApi('notes', 'post', {note, laneId }).then(noteResp => {
+    return callApi('notes', 'post', { note, laneId }).then(noteResp => {
       dispatch(createNote(noteResp, laneId));
     });
-  }
+  };
 }
 export function updateNote(note) {
   return {
@@ -42,14 +40,14 @@ export function deleteNote(noteId, laneId) {
   return {
     type: DELETE_NOTE,
     noteId,
-    laneId
+    laneId,
   };
 }
 
 export function deleteNoteRequest(noteId, laneId) {
   return dispatch => {
     return (
-      callApi(`notes/${noteId}`, 'delete', { laneId }).then(() =>  {
+      callApi(`notes/${noteId}`, 'delete', { laneId }).then(() => {
         dispatch(deleteNote(noteId, laneId));
     }));
   };
@@ -57,10 +55,10 @@ export function deleteNoteRequest(noteId, laneId) {
 
 export function updateNoteRequest(note) {
   return dispatch => {
-    return callApi(`notes/${noteId}`, 'put', { task: note.task }).then(() => {
+    return callApi(`notes/${note.id}`, 'put', { task: note.task }).then(() => {
       dispatch(updateNote(note));
     });
-  }
+  };
 }
 
 export function editNote(noteId) {
