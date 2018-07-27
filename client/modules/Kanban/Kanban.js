@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Lanes from '../Lane/Lanes';
 import { createNote } from '../Note/NoteActions';
-import * as laneActions from '../Lane/LaneActions';
 import { createLaneRequest, fetchLanes } from '../Lane/LaneActions';
 
 // Import Style
@@ -12,7 +11,8 @@ import styles from './Kanban.css';
 const Kanban = (props) => (
   <div className={styles.kanban}>
       <button className={styles.AddLane}
-       onClick={() => props.createLane({
+       onClick={() =>
+         props.createLane({
          name: 'New lane',
        })}
       >Add Lane</button>
@@ -28,10 +28,9 @@ Kanban.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  lanes: Object.values(state.lanes)
+  lanes: Object.values(state.lanes),
 });
 const mapDispatchToProps = {
-  ...laneActions,
   addNote: createNote,
   createLane: createLaneRequest,
 };
