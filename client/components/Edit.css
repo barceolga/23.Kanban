@@ -1,13 +1,15 @@
 .delete {
-  width: 30x;
-  height: auto;
+  width: 30px;
+  height: 30px;
   color: #fff;
   background-color: red;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 600;
   transition: 1s linear;
-  border-top: 5px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  float: right;
+  margin: 2.5px;
 }
 
 .delete:hover{
@@ -26,6 +28,5 @@
   color: green;
   width: auto;
   height: auto;
-  border: none;
   padding: 10px;
 }
