@@ -9,16 +9,17 @@
 }
 .Lane .LaneHeader {
   height: 15vh;
-  width: 33vh;
+  width: 37vh;
   background-color: beige;
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 .LaneAddNote {
   margin: 0 5px;
 }
 .LaneAddNote button {
-  width: 60px;
+  width: auto;
   height: auto;
   color: #fff;
   background-color: blue;
@@ -27,6 +28,7 @@
   font-size: 15px;
   font-weight: 300;
   transition: 1s linear;
+  margin-bottom: 5px;
 
 }
 .LaneAddNote button:hover {
@@ -38,13 +40,15 @@
   font-weight: 600;
   color: navy;
   text-align: center;
+  text-transform: uppercase;
+  padding: 10px;
 }
 
 .LaneDelete {
   margin: 0 5px;
 }
 .LaneDelete button {
-  width: 80px;
+  width: auto;
   height: auto;
   color: #fff;
   background-color: red;
@@ -52,6 +56,7 @@
   border-radius: 20px;
   font-size: 15px;
   font-weight: 300;
+  margin-top: 5px;
   transition: 1s linear;
 }
 
