@@ -19,7 +19,7 @@ export function createLane(lane) {
     lane: {
       notes: [],
       ...lane,
-    }
+    },
   };
 }
 
@@ -27,15 +27,15 @@ export function createLaneRequest(lane) {
   return (dispatch) => {
     return callApi('lanes', 'post', lane).then(res => {
       dispatch(createLane(res));
-    })
-  }
+    });
+  };
 }
 
 export function createLanes(lanesData) {
   return {
     type: CREATE_LANES,
     lanes: lanesData,
-  }
+  };
 }
 
 export function updateLane(lane) {
@@ -56,7 +56,7 @@ export function deleteLaneRequest(laneId) {
     return callApi(`lanes/${laneId}`, 'delete').then(() => {
       dispatch(deleteLane(laneId));
     });
-  }
+  };
 }
 export function editLane(laneId) {
   return {
@@ -67,10 +67,10 @@ export function editLane(laneId) {
 
 export function updateLaneRequest(lane) {
   return dispatch => {
-    return callApi(`lanes/${lane.id}`, 'put',  { name: lane.name }).then(() => {
-      dispatach(updateLane(lane));
+    return callApi(`lanes/${lane.id}`, 'put', { name: lane.name }).then(() => {
+      dispatch(updateLane(lane));
     });
-  }
+  };
 }
 
 export function fetchLanes() {
@@ -80,6 +80,6 @@ export function fetchLanes() {
       const { lanes: normalizedLanes, notes } = normalized.entities;
       dispatch(createLanes(normalizedLanes));
       dispatch(createNotes(notes));
-    })
-  }
+    });
+  };
 }
