@@ -9,7 +9,7 @@ const laneSchema = new Schema({
 
 });
 
-mongoose.plugin(schema => { schema.options.usePushEach = true });
+mongoose.plugin(schema => { schema.options.usePushEach = true; });
 
 function populateNotes(next) {
   this.populate('notes');
@@ -21,7 +21,7 @@ laneSchema.pre('findOne', populateNotes);
 laneSchema.pre('remove', function (next) {
   const notesId = this.notes.map(note => note.id);
 
-  Note.remove({ id: {$in: [notesId]}}).exec();
+  Note.remove({ id: { $in: [notesId] } }).exec();
   next();
 });
 
