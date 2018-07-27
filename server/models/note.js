@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+mport mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const noteSchema = new Schema({
   task: { type: 'String', required: true },
   id: { type: 'String', required: true, unique: true },
-  laneId : { type: 'String', required: true },
+  laneId: { type: 'String', required: true },
 
 });
 
