@@ -1,0 +1,10 @@
+/* Note styles */
+
+.Note {
+  list-style: none;
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 25vw;
+  height: 35px;
+  margin: 5px;
+}
