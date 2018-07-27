@@ -6,12 +6,12 @@ import { editNote, updateNote, deleteNote } from './NoteActions.js';
 import styles from './Notes.css';
 
 const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
-  return (<ul className='notes'>{notes.map((note) =>
+  return (<ul className={styles.notes}>{notes.map((note) =>
     <Note
-      //id={note.id}
+      id={note.id}
       key={note.id}
       editing={note.editing}
-      >
+    >
         <Edit
           editing={note.editing}
           value={note.task}
