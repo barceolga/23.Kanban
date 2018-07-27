@@ -39,8 +39,8 @@ export function deleteLane(req, res) {
   });
 }
 
-export function editLaneName (req, res) {
-  if(!req.body.name) {
+export function editLaneName(req, res) {
+  if (!req.body.name) {
     res.status(400).end();
   }
 
@@ -49,5 +49,5 @@ export function editLaneName (req, res) {
       res.status(500).send(err);
     }
     res.status(200).end();
-  })
+  });
 }
