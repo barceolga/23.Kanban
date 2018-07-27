@@ -9,7 +9,7 @@ export default class Edit extends Component {
     }
   }
   finishEdit = (e) => {
-    const value =e.target.value;
+    const value = e.target.value;
     if (this.props.onUpdate) {
       this.props.onUpdate(value.trim());
     }
@@ -17,7 +17,7 @@ export default class Edit extends Component {
 
   renderDelete = () => {
     return <button className={styles.delete} onClick={this.props.onDelete}>x</button>
-  }
+  };
 
   renderValue = () => {
     const { value, onDelete, onValueClick } = this.props;
@@ -44,9 +44,8 @@ export default class Edit extends Component {
   }
 
   render() {
-
       return (
-        <div className={this.props.ClassName}>
+        <div className={this.props.className}>
             {this.props.editing ? this.renderEdit() : this.renderValue()}
         </div>
       );
@@ -59,4 +58,5 @@ Edit.propTypes = {
   onValueClick: PropTypes.func,
   onDelete: PropTypes.func,
   editing: PropTypes.bool,
-}
+  className: PropTypes.string,
+};
