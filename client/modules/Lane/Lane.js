@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NotesContainer from '../Note/NotesContainer';
 import Edit from '../../components/Edit.js';
 // Import Style
 import styles from './Lane.css';
 
-const Lane = props => {
-const { lane, laneNotes, updateLane, addNote, editLane, deleteLane } = props;
-const laneId = lane.id;
+class Lane extends React.Component {
+  constructor(props) {
+    super(props);
+      this.props = props;
+  }
+render() {
+  const {
+    connectDropTarget,
+    lane,
+    laneNotes,
+    updateLane,
+    addNote,
+    editLane,
+    deleteLane
+  } = this.props;
 
-    return (
+  const laneId = lane.id;
+  return connectDropTarget (
       <div className={styles.Lane}>
           <div className={styles.LaneHeader}>
               <div className={styles.LaneAddNote}>
@@ -33,6 +46,7 @@ const laneId = lane.id;
           />
       </div>
     );
+  }
 };
 
 
