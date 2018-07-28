@@ -51,3 +51,11 @@ export function editLaneName(req, res) {
     res.status(200).end();
   });
 }
+
+
+export function moveWithinLane(res, req) {
+  const laneId = req.params.laneId;
+  const sourceNoteId = req.params.noteId;
+  const targetNoteId = req.params.noteId;
+
+}
