@@ -11,7 +11,6 @@ export const UPDATE_LANE = 'UPDATE_LANE';
 export const DELETE_LANE = 'DELETE_LANE';
 export const EDIT_LANE = 'EDIT_LANE';
 export const MOVE_BETWEEN_LANES = 'MOVE_BETWEEN_LANES';
-export const MOVE_TO_LANE_WITH_NOTES = 'MOVE_TO_LANE_WITH_NOTES';
 
 // Export Actions
 
@@ -89,15 +88,6 @@ export function fetchLanes() {
 export function moveBetweenLanes(targetLaneId, noteId, sourceLaneId) {
   return {
     type: MOVE_BETWEEN_LANES,
-    targetLaneId,
-    noteId,
-    sourceLaneId,
-  }
-}
-
-export function moveToLaneWithNotes(targetLaneId, noteId, sourceLaneId) {
-  return {
-    type: MOVE_TO_LANE_WITH_NOTES,
     targetLaneId,
     noteId,
     sourceLaneId,
