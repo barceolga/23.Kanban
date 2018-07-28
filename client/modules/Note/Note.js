@@ -19,7 +19,7 @@ class Note extends React.Component {
       connectDropTarget,
       isDragging,
       editing,
-      children
+      children,
     } = this.props;
 
 // If the note is beeing edited, it cannot be dragged, therefore the condition set below:
@@ -61,7 +61,7 @@ const noteTarget = {
 export default compose(
   DragSource(ItemTypes.NOTE, noteSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
+    isDragging: monitor.isDragging(),
   })),
   DropTarget(ItemTypes.NOTE, noteTarget, (connect) => ({
     connectDropTarget: connect.dropTarget(),
