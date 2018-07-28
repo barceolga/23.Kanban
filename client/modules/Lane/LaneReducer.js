@@ -1,6 +1,6 @@
 
 // Import Actions
-import { CREATE_LANE, CREATE_LANES, UPDATE_LANE, DELETE_LANE, EDIT_LANE, MOVE_BETWEEN_LANES, /*MOVE_TO_LANE_WITH_NOTES*/ } from './LaneActions';
+import { CREATE_LANE, CREATE_LANES, UPDATE_LANE, DELETE_LANE, EDIT_LANE, MOVE_BETWEEN_LANES } from './LaneActions';
 import { CREATE_NOTE, DELETE_NOTE, MOVE_WITHIN_LANE } from '../Note/NoteActions.js';
 
 import omit from 'lodash/omit';
@@ -29,6 +29,7 @@ export default function lanes(state = initialState, action) {
     case CREATE_NOTE:
         const newLane = { ...state[action.laneId] };
         newLane.notes = newLane.notes.concat(action.note.id);
+        //console.log(newLane.notes);
         return { ...state, [action.laneId]: newLane };
     case DELETE_NOTE:
         const updatedLane = { ...state[action.laneId] };
@@ -43,22 +44,18 @@ export default function lanes(state = initialState, action) {
       return { ...state, [action.laneId]: newLaneMovedNote };
     case MOVE_BETWEEN_LANES: {
       const targetLane = { ...state[action.targetLaneId] };
-      targetLane.notes = [...targetLane.notes, action.noteId];
-
       const sourceLane = { ...state[action.sourceLaneId] };
-      sourceLane.notes = sourceLane.notes.filter(noteId => noteId !== action.noteId);
-      console.log(targetLane.notes);
-      return { ...state, [action.targetLaneId]: targetLane, [action.sourceLaneId]: sourceLane };
+      //console.log(sourceLane);
+      //console.log(action.sourceLaneId);
+      const noteExistInLane = targetLane.notes.find(noteId => noteId === action.noteId)
+      if (!noteExistInLane) {
+        targetLane.notes = [...targetLane.notes, action.noteId];
+        console.log(targetLane.notes);
+        sourceLane.notes = sourceLane.notes.filter(noteId => noteId !== action.noteId);
+        //console.log(sourceLane.notes);
+        return { ...state, [action.targetLaneId]: targetLane, [action.sourceLaneId]: sourceLane };
+      }
     }
-    /*case MOVE_TO_LANE_WITH_NOTES: {
-      const targetLane = { ...state[action.targetLaneId] };
-      targetLane.notes = targetLane.notes.concat(action.noteId);
-
-      const sourceLane = { ...state[action.sourceLaneId] };
-      sourceLane.notes = sourceLane.notes.filter(noteId => noteId === action.noteId);
-
-      return { ...state, [action.targetLaneId]: targetLane, [action.sourceLaneId]: sourceLane };
-    }*/
     default:
       return state;
   }
