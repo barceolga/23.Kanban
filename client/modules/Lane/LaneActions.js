@@ -17,6 +17,7 @@ export const MOVE_BETWEEN_LANES = 'MOVE_BETWEEN_LANES';
 export function createLane(lane) {
   return {
     type: CREATE_LANE,
+    boardId,
     lane: {
       notes: [],
       ...lane,
@@ -24,10 +25,10 @@ export function createLane(lane) {
   };
 }
 
-export function createLaneRequest(lane) {
+export function createLaneRequest(lane, boardId) {
   return (dispatch) => {
-    return callApi('lanes', 'post', lane).then(res => {
-      dispatch(createLane(res));
+    return callApi('lanes', 'post', { lane, boardId }).then(laneResp => {
+      dispatch(createLane(laneResp, boardId));
     });
   };
 }
@@ -46,16 +47,17 @@ export function updateLane(lane) {
   };
 }
 
-export function deleteLane(laneId) {
+export function deleteLane(laneId, boardId) {
   return {
     type: DELETE_LANE,
     laneId,
+    boardId,
   };
 }
-export function deleteLaneRequest(laneId) {
+export function deleteLaneRequest(laneId, boardId) {
   return (dispatch) => {
-    return callApi(`lanes/${laneId}`, 'delete').then(() => {
-      dispatch(deleteLane(laneId));
+    return callApi(`lanes/${laneId}`, 'delete', { boardId }).then(() => {
+      dispatch(deleteLane(laneId, boardId));
     });
   };
 }
