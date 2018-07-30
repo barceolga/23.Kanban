@@ -2,7 +2,7 @@ export default {
   locale: 'en',
   messages: {
     siteTitle: 'MERN Starter Blog',
-    addPost: 'Add Post',
+    addBoard: 'Add Board',
     switchLanguage: 'Switch Language',
     twitterMessage: 'We are on Twitter',
     by: 'By',
