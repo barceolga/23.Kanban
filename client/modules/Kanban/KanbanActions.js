@@ -1,7 +1,8 @@
 import callApi from '../../util/apiCaller';
-import { boards } from '../../util/schema';
+import { boards, lanes } from '../../util/schema';
 import { normalize } from 'normalizr';
 import { createLanes } from '../Lane/LaneActions';
+import { createNotes } from '../Note/NoteActions';
 
 export const ADD_BOARD = 'ADD_BOARD';
 export const CREATE_BOARDS = 'CREATE_BOARDS';
@@ -45,9 +46,10 @@ export function fetchBoards() {
   return (dispatch) => {
     return callApi('boards').then(res => {
       const normalized = normalize(res.boards, boards);
-      const { boards: normalizedBoards, lanes } = normalized.entities;
+      const { boards: normalizedBoards, lanes, notes } = normalized.entities;
       dispatch(createBoards(normalizedBoards));
       dispatch(createLanes(lanes));
+      dispatach(createNotes(notes));
     });
   };
 }
