@@ -11,33 +11,42 @@ import { compose } from 'redux';
 // Import Style
 import styles from './Kanban.css';
 
-const Kanban = (props) => (
-  <div className={styles.kanban}>
-      <button className={styles.AddLane}
-       onClick={() =>
-         props.createLane({
-         name: 'New lane',
-       })}
-      >Add Lane</button>
-      <Lanes lanes={props.lanes} />
-  </div>
-);
+class Kanban extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+  render() {
+    const {
+      board,
+      boardLanes,
+      lanes,
+      createLane,
+    } = this.props;
+    return (
+      <div className={styles.kanban}>
+          <button className={styles.AddLane}
+         onClick={() =>
+           props.createLane({
+           name: 'New lane',
+         })}
+        >Add Lane</button>
+        <h2>{board.name}</h2>
+        <Lanes lanes={boardLanes} boardId={boardId}/>
+    </div>
+  );
+  }
+}
 
 Kanban.need = [() => { return fetchLanes(); }];
 
 Kanban.propTypes = {
     lanes: PropTypes.array,
+    board: PropTypes.object,
     createLane: PropTypes.func,
 };
-
-const mapStateToProps = state => ({
-  lanes: Object.values(state.lanes),
-});
-const mapDispatchToProps = {
-  addNote: createNote,
-  createLane: createLaneRequest,
-};
-export default compose(
+export default Kanban;
+/*compose (
   connect(mapStateToProps, mapDispatchToProps),
   DragDropContext(HTML5Backend)
-)(Kanban);
+)(Kanban);*/
