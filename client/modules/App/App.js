@@ -13,7 +13,7 @@ import KanbanBoard from '../../modules/Kanban/KanbanBoard';
 
 // Import Actions
 import { toggleAddBoard } from './AppActions';
-import { addBoardRequest } from '../../modules/Kanban/KanbanActions';
+import { addBoardRequest, fetchBoards } from '../../modules/Kanban/KanbanActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 let DevTools;
@@ -80,7 +80,7 @@ export class App extends Component {
     );
   }
 }
-
+App.need = [() => { return fetchBoards(); }];
 App.propTypes = {
   //children: PropTypes.object.isRequired,
   dispatch: PropTypes.func,
@@ -92,8 +92,8 @@ App.propTypes = {
 function mapStateToProps(store) {
   return {
     intl: store.intl,
+    boards: Object.values(state.boards)
   };
 }
-
 
 export default connect(mapStateToProps)(App);
