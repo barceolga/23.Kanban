@@ -4,7 +4,7 @@ import NotesContainer from '../Note/NotesContainer';
 import Edit from '../../components/Edit.js';
 import ItemTypes from '../Kanban/itemTypes';
 import {DragSource, DropTarget } from 'react-dnd';
-import {compose} from 'redux';
+import { compose } from 'redux';
 
 // Import Style
 import styles from './Lane.css';
