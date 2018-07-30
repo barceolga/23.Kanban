@@ -9,9 +9,11 @@ import styles from './App.css';
 import Helmet from 'react-helmet';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import KanbanBoard from '../../modules/Kanban/KanbanBoard';
 
 // Import Actions
-import { toggleAddPost } from './AppActions';
+import { toggleAddBoard } from './AppActions';
+import { addBoardRequest } from '../../modules/Kanban/KanbanActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 let DevTools;
@@ -29,11 +31,13 @@ export class App extends Component {
   componentDidMount() {
     this.setState({isMounted: true}); // eslint-disable-line
   }
-
-  toggleAddPostSection = () => {
-    this.props.dispatch(toggleAddPost());
-  };
-
+/*
+  toggleAddBoardSection = () => {
+    this.props.dispatch(toggleAddBoard());
+  };*/
+  handleAddBoard = () => {
+    this.props.dispatch(addBoardRequest());
+  }
   render() {
     return (
       <div>
@@ -57,10 +61,18 @@ export class App extends Component {
           <Header
             switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
             intl={this.props.intl}
-            toggleAddPost={this.toggleAddPostSection}
+            toggleAddBoard={this.toggleAddBoardSection}
           />
           <div className={styles.container}>
-            {this.props.children}
+            <div>
+                <button className={styles.AddPost}
+                onClick={() =>
+                 this.handleAddBoard({
+                 name: 'New board',
+               })}
+              >Add Board</button>
+              <KanbanBoard boards={this.props.boards} />
+          </div>
           </div>
           <Footer />
         </div>
@@ -70,9 +82,10 @@ export class App extends Component {
 }
 
 App.propTypes = {
-  children: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  //children: PropTypes.object.isRequired,
+  dispatch: PropTypes.func,
   intl: PropTypes.object.isRequired,
+  boards: PropTypes.array,
 };
 
 // Retrieve data from store as props
@@ -81,5 +94,6 @@ function mapStateToProps(store) {
     intl: store.intl,
   };
 }
+
 
 export default connect(mapStateToProps)(App);
