@@ -1,4 +1,4 @@
-import { MOVE_LANE, ADD_BOARD, CREATE_BOARDS } from './boardActions';
+import { MOVE_LANE, ADD_BOARD, CREATE_BOARDS } from './KanbanActions';
 import { CREATE_LANE, DELETE_LANE, MOVE_BETWEEN_LANES } from '../Lane/LaneActions';
 import uuid from 'uuid';
 
