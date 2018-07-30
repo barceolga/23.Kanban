@@ -4,7 +4,7 @@ const note = new schema.Entity('notes');
 const lane = new schema.Entity('lanes', {
   notes: [note],
 });
-const board = new schema.Entity('board', {
+const board = new schema.Entity('boards', {
   lanes: [lane],
 })
 
