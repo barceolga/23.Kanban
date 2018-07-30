@@ -1,4 +1,4 @@
-import { MOVE_LANE } from './KanbanActions';
+import { MOVE_LANE, ADD_BOARD, CREATE_BOARDS } from './boardActions';
 import { CREATE_LANE, DELETE_LANE, MOVE_BETWEEN_LANES } from '../Lane/LaneActions';
 import uuid from 'uuid';
 
@@ -14,28 +14,30 @@ function moveLanes(array, sourceLaneId, targetLaneId) {
 const initialState = {};
 console.log(initialState);
 
-export default function kanban(state = initialState, action){
-  kanban.id = uuid();
-  const kanbanId = kanban.id;
-  console.log(kanbanId);
+export default function boards(state = initialState, action){
+
   switch(action.type) {
+    case ADD_BOARD:
+        return { ...state, [action.board.id]: action.board};
+    case CREATE_BOARDS:
+        return { ...action.boards };
     case CREATE_LANE:
-        const newKanban = { ...state[action.kanbanId] };
-        console.log(action.kanbanId);
-        newKanban.lanes = newKanban.lanes.concat(action.lane.id);
+        const newBoard = { ...state[action.boardId] };
+        console.log(action.boardId);
+        newBoard.lanes = newBoard.lanes.concat(action.lane.id);
         //console.log(newLane.notes);
-        return { ...state, [action.kanbanId]: newKaban};
+        return { ...state, [action.boardId]: newBoard};
     case DELETE_LANE:
-        const updatedKanban = { ...state[action.kanbanId] };
-        console.log(updatedKanban);
-        updatedKanban.lanes = updatedKanban.lanes.filter(laneId => laneId !== action.laneId);
-        return { ...state, [action.kanbanId]: updatedKanban };
+        const updatedBoard = { ...state[action.boardId] };
+        console.log(updatedboard);
+        updatedBoard.lanes = updatedBoard.lanes.filter(laneId => laneId !== action.laneId);
+        return { ...state, [action.boardId]: updatedBoard };
     case MOVE_LANE:
-        const reupdatedKanban = { ...state[action.kanbanId] };
-        reupdatedKanban.lanes = moveLanes(reupdatedKanban.lanes, action.sourceId, action.targetId);
-        console.log(reupdatedKanban);
-        console.log(reupdatedKanban.lanes);
-    return { ...state, [action.kanbanId]: reupdatedKanban };
+        const reupdatedBoard = { ...state[action.boardId] };
+        reupdatedBoard.lanes = moveLanes(reupdatedBoard.lanes, action.sourceId, action.targetId);
+        console.log(reupdatedBoard);
+        console.log(reupdateBoard.lanes);
+    return { ...state, [action.boardId]: reupdatedBoard };
   default:
     return state;
   }
