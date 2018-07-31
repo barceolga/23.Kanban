@@ -1,5 +1,5 @@
 import callApi from '../../util/apiCaller';
-import { lanes, boards } from '../../util/schema';
+import { lanes } from '../../util/schema';
 import { normalize } from 'normalizr';
 import { createNotes } from '../Note/NoteActions';
 
@@ -10,14 +10,14 @@ export const CREATE_LANES = 'CREATE_LANES';
 export const UPDATE_LANE = 'UPDATE_LANE';
 export const DELETE_LANE = 'DELETE_LANE';
 export const EDIT_LANE = 'EDIT_LANE';
-export const MOVE_BETWEEN_LANES = 'MOVE_BETWEEN_LANES';
+//export const MOVE_BETWEEN_LANES = 'MOVE_BETWEEN_LANES';
+export const MOVE_BETWEEN_LANES_WITH_NOTES = 'MOVE_BETWEEN_LANES_WITH_NOTES';
 
 // Export Actions
 
-export function createLane(lane, boardId) {
+export function createLane(lane) {
   return {
     type: CREATE_LANE,
-    boardId,
     lane: {
       notes: [],
       ...lane,
@@ -25,10 +25,10 @@ export function createLane(lane, boardId) {
   };
 }
 
-export function createLaneRequest(lane, boardId) {
+export function createLaneRequest(lane) {
   return (dispatch) => {
-    return callApi('lanes', 'post', { lane, boardId }).then(laneResp => {
-      dispatch(createLane(laneResp, boardId));
+    return callApi('lanes', 'post', lane).then(res => {
+      dispatch(createLane(res));
     });
   };
 }
@@ -47,17 +47,16 @@ export function updateLane(lane) {
   };
 }
 
-export function deleteLane(laneId, boardId) {
+export function deleteLane(laneId) {
   return {
     type: DELETE_LANE,
     laneId,
-    boardId,
   };
 }
-export function deleteLaneRequest(laneId, boardId) {
+export function deleteLaneRequest(laneId) {
   return (dispatch) => {
-    return callApi(`lanes/${laneId}`, 'delete', { boardId }).then(() => {
-      dispatch(deleteLane(laneId, boardId));
+    return callApi(`lanes/${laneId}`, 'delete').then(() => {
+      dispatch(deleteLane(laneId));
     });
   };
 }
@@ -87,9 +86,9 @@ export function fetchLanes() {
   };
 }
 
-export function moveBetweenLanes(targetLaneId, noteId, sourceLaneId) {
+export function moveBetweenLanesWithNotes (targetLaneId, noteId, sourceLaneId) {
   return {
-    type: MOVE_BETWEEN_LANES,
+    type:  MOVE_BETWEEN_LANES_WITH_NOTES,
     targetLaneId,
     noteId,
     sourceLaneId,
