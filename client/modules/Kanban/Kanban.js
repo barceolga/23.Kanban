@@ -20,7 +20,6 @@ class Kanban extends React.Component {
     const {
       board,
       boardLanes,
-      lanes,
       createLane,
     } = this.props;
     return (
@@ -32,9 +31,11 @@ class Kanban extends React.Component {
          })}
         >Add Lane</button>
         <h2>{board.name}</h2>
-        <Lanes lanes={boardLanes} boardId={boardId}/>
-    </div>
-  );
+        <Lanes
+          lanes={boardLanes}
+          boardId={boardId}/>
+      </div>
+    );
   }
 }
 
