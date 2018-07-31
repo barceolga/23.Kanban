@@ -31,10 +31,10 @@ export class App extends Component {
   componentDidMount() {
     this.setState({isMounted: true}); // eslint-disable-line
   }
-/*
+
   toggleAddBoardSection = () => {
     this.props.dispatch(toggleAddBoard());
-  };*/
+  };
   handleAddBoard = () => {
     this.props.dispatch(addBoardRequest());
   }
@@ -92,7 +92,6 @@ App.propTypes = {
 function mapStateToProps(store) {
   return {
     intl: store.intl,
-    boards: Object.values(state.boards)
   };
 }
 
