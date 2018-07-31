@@ -4,9 +4,9 @@ const note = new schema.Entity('notes');
 const lane = new schema.Entity('lanes', {
   notes: [note],
 });
-const board = new schema.Entity('boards', {
+/* const board = new schema.Entity('boards', {
     lanes: [lane],
-});
+}); */
 
 export const lanes = [lane];
-export const boards = [board];
+// export const boards = [board];
