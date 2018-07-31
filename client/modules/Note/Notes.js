@@ -33,7 +33,9 @@ const Notes = ({ notes, laneId, editNote, updateNote, deleteNote, moveWithinLane
 Notes.propTypes = {
   deleteNoteRequest: PropTypes.func,
   updateNote: PropTypes.func,
+  deleteNote: PropTypes.func,
   editNote: PropTypes.func,
+  moveWithinLane: PropTypes.func,
   laneId: PropTypes.string,
   notes: PropTypes.array,
 };

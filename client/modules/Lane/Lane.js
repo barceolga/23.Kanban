@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NotesContainer from '../Note/NotesContainer';
 import Edit from '../../components/Edit.js';
 import ItemTypes from '../Kanban/itemTypes';
-import {DragSource, DropTarget } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
 import { compose } from 'redux';
 
 // Import Style
@@ -15,7 +15,6 @@ class Lane extends React.Component {
       this.props = props;
   }
 render() {
-
   const {
     connectDragSource,
     connectDropTarget,
@@ -35,10 +34,12 @@ render() {
 
   return dragSource(connectDropTarget(
 
-      <div className={styles.Lane}
+      <div
+      className={styles.Lane}
       style={{
         opacity: isDragging ? 0 : 1,
-      }}>
+      }}
+      >
       <div className={styles.LaneHeader}>
           <div className={styles.LaneAddNote}>
               <button onClick={() => addNote({ task: 'New Note' }, laneId)}>Add Note</button>
@@ -69,10 +70,10 @@ const laneSource = {
     return {
       id: props.id,
     };
-},
-isDragging(props, monitor) {
-  return props.id === monitor.getItem().id;
-}
+  },
+  isDragging(props, monitor) {
+    return props.id === monitor.getItem().id;
+  },
 }
 
 const laneTarget = {
@@ -81,7 +82,7 @@ hover(targetProps, monitor) {
     if (targetProps.id !== sourceProps.id) {
       targetProps.moveLane(targetProps.id, sourceProps.id);
     }
-  }
+  },
 }
 
 Lane.propTypes = {
@@ -92,6 +93,10 @@ Lane.propTypes = {
   deleteLane: PropTypes.func,
   editLane: PropTypes.func,
   moveLane:PropTypes.func,
+  isDragging: PropTypes.bool,
+  editing: PropTypes.bool,
+  connectDropTarget: PropTypes.func,
+  connectDragSource: PropTypes.func,
 };
 
 export default compose(

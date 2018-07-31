@@ -18,7 +18,7 @@ export function addBoard(board) {
   };
 }
 
-export function addBoardRequest(lane) {
+export function addBoardRequest(board) {
   return (dispatch) => {
     return callApi('boards', 'post', board).then(res => {
       dispatch(addBoard(res));
@@ -34,7 +34,7 @@ export function createBoards(boardsData) {
 }
 
 export function moveLane(boardId, targetId, sourceId) {
-  return  {
+  return {
     type: MOVE_LANE,
     boardId,
     sourceId,

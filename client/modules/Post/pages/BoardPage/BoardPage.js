@@ -8,7 +8,7 @@ import BoardCreateWidget from '../../components/BoardCreateWidget/BoardCreateWid
 
 // Import Actions
 import { addBoardRequest } from '../../../Kanban/KanbanActions';
-//import { fetchLanes } from '../../../Lane/LaneActions';
+// import { fetchLanes } from '../../../Lane/LaneActions';
 import { toggleAddBoard } from '../../../App/AppActions';
 
 // Import Selectors
@@ -16,15 +16,15 @@ import { getShowAddBoard } from '../../../App/AppReducer';
 //import { getPosts } from '../../PostReducer';
 
 class BoardPage extends Component {
-  /*componentDidMount() {
+  /* componentDidMount() {
     this.props.dispatch(fetchLanes());
-  }*/
+  }* /
 
-  /*handleDeletePost = post => {
+  /* handleDeletePost = post => {
     if (confirm('Do you want to delete this post')) { // eslint-disable-line
       this.props.dispatch(deletePostRequest(post));
     }
-  };*/
+  }; */
 
   handleAddBoard = () => {
     this.props.dispatch(toggleAddBoard());
@@ -42,7 +42,7 @@ class BoardPage extends Component {
 }
 
 // Actions required to provide data for this component to render in sever side.
-//BoardPage.need = [() => { return fetchLanes(); }];
+// BoardPage.need = [() => { return fetchLanes(); }];
 
 // Retrieve data from store as props
 function mapStateToProps(state) {

@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
     laneNotes: ownProps.lane.notes.map(noteId => state.notes[noteId]),
 });
 
-const mapDispatchToProps =  {
+const mapDispatchToProps = {
   deleteLane: deleteLaneRequest,
   updateLane: updateLaneRequest,
   addNote: createNoteRequest,
@@ -21,7 +21,7 @@ const mapDispatchToProps =  {
 };
 
 const noteTarget = {
-  hover(targetProps, monitor){
+  hover(targetProps, monitor) {
     const sourceProps = monitor.getItem();
     const { id: noteId, laneId: sourceLaneId } = sourceProps;
       targetProps.moveBetweenLanes(

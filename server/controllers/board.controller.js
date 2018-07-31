@@ -4,7 +4,7 @@ import uuid from 'uuid';
 
 
 export function setBoard(req, res) {
-  if (!req.body) {
+  if (!req.body.name) {
     res.status(403).end();
   }
   const newBoard = new Board(req.body);

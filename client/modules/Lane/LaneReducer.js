@@ -47,7 +47,7 @@ export default function lanes(state = initialState, action) {
       const sourceLane = { ...state[action.sourceLaneId] };
       //console.log(sourceLane);
       //console.log(action.sourceLaneId);
-      const noteExistInLane = targetLane.notes.find(noteId => noteId === action.noteId)
+      const noteExistInLane = targetLane.notes.find(noteId => noteId === action.noteId);
       if (!noteExistInLane) {
         targetLane.notes = [...targetLane.notes, action.noteId];
         console.log(targetLane.notes);

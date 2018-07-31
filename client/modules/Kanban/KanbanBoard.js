@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-const KanbanBoard = ({ boards }) => {
+const KanbanBoard = ({ boards = [] }) => {
   return (
       <div >{boards.map(board =>
         <Kanban key={board.id} board={board} />
@@ -14,7 +14,8 @@ const KanbanBoard = ({ boards }) => {
 };
 
 KanbanBoard.propTypes = {
+  board: PropTypes.object,
   boards: PropTypes.array,
 };
 
-export default compose (DragDropContext(HTML5Backend))(KanbanBoard);
+export default compose(DragDropContext(HTML5Backend))(KanbanBoard);

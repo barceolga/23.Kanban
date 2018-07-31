@@ -1,5 +1,5 @@
 // Import Actions
-import { TOGGLE_ADD_BOARD} from './AppActions';
+import { TOGGLE_ADD_BOARD } from './AppActions';
 
 // Initial State
 const initialState = {

@@ -1,5 +1,5 @@
 import callApi from '../../util/apiCaller';
-import { lanes } from '../../util/schema';
+import { lanes, boards } from '../../util/schema';
 import { normalize } from 'normalizr';
 import { createNotes } from '../Note/NoteActions';
 
@@ -14,7 +14,7 @@ export const MOVE_BETWEEN_LANES = 'MOVE_BETWEEN_LANES';
 
 // Export Actions
 
-export function createLane(lane) {
+export function createLane(lane, boardId) {
   return {
     type: CREATE_LANE,
     boardId,
@@ -93,5 +93,5 @@ export function moveBetweenLanes(targetLaneId, noteId, sourceLaneId) {
     targetLaneId,
     noteId,
     sourceLaneId,
-  }
+  };
 }

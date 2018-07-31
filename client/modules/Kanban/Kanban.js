@@ -22,18 +22,21 @@ class Kanban extends React.Component {
       boardLanes,
       createLane,
     } = this.props;
+
+    const boardId = board.id;
     return (
       <div className={styles.kanban}>
-          <button className={styles.AddLane}
-         onClick={() =>
-           props.createLane({
-           name: 'New lane',
+          <button
+          className={styles.AddLane}
+          onClick={() => createLane({
+          name: 'New lane',
          })}
-        >Add Lane</button>
+          >Add Lane</button>
         <h2>{board.name}</h2>
         <Lanes
           lanes={boardLanes}
-          boardId={boardId}/>
+          boardId={boardId}
+        />
       </div>
     );
   }
@@ -42,12 +45,12 @@ class Kanban extends React.Component {
 Kanban.need = [() => { return fetchLanes(); }];
 
 Kanban.propTypes = {
-    lanes: PropTypes.array,
+    boardLanes: PropTypes.array,
     board: PropTypes.object,
     createLane: PropTypes.func,
 };
 export default Kanban;
-/*compose (
+/* compose (
   connect(mapStateToProps, mapDispatchToProps),
   DragDropContext(HTML5Backend)
-)(Kanban);*/
+)(Kanban); */

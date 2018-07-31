@@ -6,7 +6,7 @@ const lane = new schema.Entity('lanes', {
 });
 const board = new schema.Entity('boards', {
     lanes: [lane],
-})
+});
 
 export const lanes = [lane];
 export const boards = [board];

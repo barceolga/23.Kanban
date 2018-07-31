@@ -15,6 +15,8 @@ const Lanes = ({ lanes, moveNotes, moveBetweenLanes }) => {
 
 Lanes.propTypes = {
   lanes: PropTypes.array,
+  moveNotes: PropTypes.func,
+  moveBetweenLanes: PropTypes.func,
 };
 
 export default Lanes;

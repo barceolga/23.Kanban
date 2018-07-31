@@ -7,7 +7,6 @@ const laneSchema = new Schema({
   notes: [{ type: Schema.ObjectId, ref: 'Note', required: true }],
   id: { type: 'String', required: true, unique: true },
   boardId: { type: 'String', required: true },
-
 });
 
 mongoose.plugin(schema => { schema.options.usePushEach = true; });

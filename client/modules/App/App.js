@@ -13,7 +13,7 @@ import KanbanBoard from '../../modules/Kanban/KanbanBoard';
 
 // Import Actions
 import { toggleAddBoard } from './AppActions';
-import { addBoardRequest, fetchBoards } from '../../modules/Kanban/KanbanActions';
+import { addBoardRequest, addBoard, fetchBoards } from '../../modules/Kanban/KanbanActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 let DevTools;
@@ -35,9 +35,9 @@ export class App extends Component {
   toggleAddBoardSection = () => {
     this.props.dispatch(toggleAddBoard());
   };
-  handleAddBoard = () => {
+  /*handleAddBoard = () => {
     this.props.dispatch(addBoardRequest());
-  }
+  }*/
   render() {
     return (
       <div>
@@ -65,13 +65,15 @@ export class App extends Component {
           />
           <div className={styles.container}>
             <div>
-                <button className={styles.AddPost}
-                onClick={() =>
-                 this.handleAddBoard({
-                 name: 'New board',
-               })}
-              >Add Board</button>
-              <KanbanBoard boards={this.props.boards} />
+                <button
+                    className={styles.AddPost}
+                    onClick={() => addBoard({
+                    name: 'New board',
+                 })}
+                >Add Board</button>
+              <KanbanBoard
+                boards={this.props.boards}
+              />
           </div>
           </div>
           <Footer />
@@ -95,4 +97,8 @@ function mapStateToProps(store) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+  addBoard: addBoardRequest,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

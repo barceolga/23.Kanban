@@ -38,6 +38,6 @@ export default (
         cb(null, require('./modules/Kanban/Kanban').default);
       });
     }}
-  />
+    />
   </Route>
 );

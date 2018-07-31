@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {DragSource, DropTarget } from 'react-dnd';
-import {compose} from 'redux';
+import { DragSource, DropTarget } from 'react-dnd';
+import { compose } from 'redux';
 import ItemTypes from '../Kanban/itemTypes';
 
 // Import Style
@@ -11,7 +11,7 @@ import styles from './Note.css';
 class Note extends React.Component {
   constructor(props) {
     super(props);
-      this.props= props;
+      this.props = props;
   }
   render() {
     const {
@@ -26,7 +26,8 @@ class Note extends React.Component {
       const dragSource = editing ? a => a : connectDragSource;
 
       return dragSource(connectDropTarget(
-        <li className={styles.Note}
+        <li
+        className={styles.Note}
         style={{
           opacity: isDragging ? 0 : 1,
         }}
@@ -46,8 +47,8 @@ const noteSource = {
   },
   isDragging(props, monitor) {
     return props.id === monitor.getItem().id;
-  }
-}
+  },
+};
 
 const noteTarget = {
   hover(targetProps, monitor) {
@@ -56,8 +57,16 @@ const noteTarget = {
     if (targetProps.id !== sourceProps.id) {
       targetProps.moveWithinLane(targetProps.laneId, targetProps.id, sourceProps.id);
     }
-  }
-}
+  },
+};
+
+Note.propTypes = {
+  connectDragSource: PropTypes.func,
+  connectDropTarget: PropTypes.func,
+  isDragging: PropTypes.bool,
+  editing: PropTypes.bool,
+  children: PropTypes.object,
+};
 export default compose(
   DragSource(ItemTypes.NOTE, noteSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
