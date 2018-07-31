@@ -9,11 +9,9 @@ import styles from './App.css';
 import Helmet from 'react-helmet';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import KanbanBoard from '../../modules/Kanban/KanbanBoard';
 
 // Import Actions
 import { toggleAddBoard } from './AppActions';
-import { addBoardRequest, addBoard, fetchBoards } from '../../modules/Kanban/KanbanActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 let DevTools;
@@ -64,17 +62,9 @@ export class App extends Component {
             toggleAddBoard={this.toggleAddBoardSection}
           />
           <div className={styles.container}>
-            <div>
-                <button
-                    className={styles.AddPost}
-                    onClick={() => addBoard({
-                    name: 'New board',
-                 })}
-                >Add Board</button>
-              <KanbanBoard
-                boards={this.props.boards}
-              />
-          </div>
+              <div>
+                {this.props.children}
+              </div>
           </div>
           <Footer />
         </div>
@@ -82,12 +72,10 @@ export class App extends Component {
     );
   }
 }
-App.need = [() => { return fetchBoards(); }];
 App.propTypes = {
-  //children: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired,
   dispatch: PropTypes.func,
   intl: PropTypes.object.isRequired,
-  boards: PropTypes.array,
 };
 
 // Retrieve data from store as props
@@ -97,8 +85,4 @@ function mapStateToProps(store) {
   };
 }
 
-const mapDispatchToProps = {
-  addBoard: addBoardRequest,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
