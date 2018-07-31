@@ -23,12 +23,6 @@ export function Header(props, context) {
         <h1 className={styles['site-title']}>
           <Link to="/" ><FormattedMessage id="siteTitle" /></Link>
         </h1>
-
-        {
-          context.router.isActive('/', true)
-            ? <a className={styles['add-post-button']} href="#" onClick={props.toggleAddBoard}><FormattedMessage id="addBoard" /></a>
-            : null
-        }
       </div>
     </div>
   );
@@ -39,7 +33,6 @@ Header.contextTypes = {
 };
 
 Header.propTypes = {
-  toggleAddBoard: PropTypes.func.isRequired,
   switchLanguage: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
 };
