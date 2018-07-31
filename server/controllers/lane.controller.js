@@ -1,6 +1,5 @@
 import Lane from '../models/lane';
 import Note from '../models/note';
-import Board from '../models/board';
 import uuid from 'uuid';
 
 export function addLane(req, res) {
