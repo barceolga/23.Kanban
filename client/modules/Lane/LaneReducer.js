@@ -15,7 +15,7 @@ function moveNotes(array, sourceNoteId, targetNoteId) {
 }
 
 // Initial State
-const initialState = [];
+const initialState = {};
 
 export default function lanes(state = initialState, action) {
   switch (action.type) {
