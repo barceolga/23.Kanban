@@ -30,15 +30,9 @@ render() {
 
   const laneId = lane.id;
 
-  const dragSource = editing ? a => a : connectDragSource;
-
-  return dragSource(connectDropTarget(
-
+  return connectDropTarget(
       <div
       className={styles.Lane}
-      style={{
-        opacity: isDragging ? 0 : 1,
-      }}
       >
       <div className={styles.LaneHeader}>
           <div className={styles.LaneAddNote}>
@@ -61,28 +55,8 @@ render() {
         laneId={laneId}
       />
       </div>
-    ));
+    );
   }
-}
-
-const laneSource = {
-  beginDrag(props) {
-    return {
-      id: props.id,
-    };
-  },
-  isDragging(props, monitor) {
-    return props.id === monitor.getItem().id;
-  },
-}
-
-const laneTarget = {
-hover(targetProps, monitor) {
-  const sourceProps = monitor.getItem();
-    if (targetProps.id !== sourceProps.id) {
-      targetProps.moveLane(targetProps.id, sourceProps.id);
-    }
-  },
 }
 
 Lane.propTypes = {
@@ -99,12 +73,4 @@ Lane.propTypes = {
   connectDragSource: PropTypes.func,
 };
 
-export default compose(
-  DragSource(ItemTypes.LANE, laneSource, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-  })),
-  DropTarget(ItemTypes.LANE, laneTarget, (connect) => ({
-    connectDropTarget: connect.dropTarget(),
-  }))
-)(Lane);
+export default Lane;
