@@ -4,34 +4,19 @@ import Board from '../models/board';
 import uuid from 'uuid';
 
 export function addLane(req, res) {
-  const { lane, boardId} = req.body
-  if (!lane || !lane.name || !boardId) {
+  if (!req.body.name) {
     res.status(403).end();
   }
 
-  const newLane = new Lane({
-    name: lane.name,
-    boardId: boardId,
-    id: uuid(),
-  });
+  const newLane = new Lane(req.body);
 
   newLane.notes = [];
+  newLane.id = uuid();
   newLane.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
     }
-    Board.findOne({ id: boardId })
-      .then(board => {
-        board.lanes.push(saved);
-        return board.save();
-      })
-      .then(() => {
         res.json(saved);
-      })
-      .catch((err) => {
-        console.log('err');
-        console.log(err);
-      });
   });
 }
 
@@ -50,17 +35,12 @@ export function deleteLane(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-      Board.findOne({ id: lane.boardId }).exec((err, board) => {
-        const updatedLanes = board.lanes.filter(lane => lane.id !== laneId);
-        board.lanes = updatedLanes;
-        board.save(() => {
           lane.remove(() => {
           res.status(200).end();
         });
       });
-    });
-  });
-}
+    };
+
 
 export function editLaneName(req, res) {
   if (!req.body.name) {
