@@ -1,5 +1,5 @@
 import callApi from '../../util/apiCaller';
-import { boards, lanes } from '../../util/schema';
+import { boards, lanes, notes } from '../../util/schema';
 import { normalize } from 'normalizr';
 import { createLanes } from '../Lane/LaneActions';
 import { createNotes } from '../Note/NoteActions';
@@ -49,7 +49,7 @@ export function fetchBoards() {
       const { boards: normalizedBoards, lanes, notes } = normalized.entities;
       dispatch(createBoards(normalizedBoards));
       dispatch(createLanes(lanes));
-      dispatach(createNotes(notes));
+      dispatch(createNotes(notes));
     });
   };
 }
