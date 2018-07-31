@@ -1,6 +1,6 @@
 
 // Import Actions
-import { CREATE_LANE, CREATE_LANES, UPDATE_LANE, DELETE_LANE, EDIT_LANE, MOVE_BETWEEN_LANES } from './LaneActions';
+import { CREATE_LANE, CREATE_LANES, UPDATE_LANE, DELETE_LANE, EDIT_LANE, MOVE_BETWEEN_LANES_WITH_NOTES } from './LaneActions';
 import { CREATE_NOTE, DELETE_NOTE, MOVE_WITHIN_LANE } from '../Note/NoteActions.js';
 
 import omit from 'lodash/omit';
@@ -42,17 +42,14 @@ export default function lanes(state = initialState, action) {
       const newLaneMovedNote = { ...state[action.laneId] };
       newLaneMovedNote.notes = moveNotes(newLaneMovedNote.notes, action.sourceId, action.targetId);
       return { ...state, [action.laneId]: newLaneMovedNote };
-    case MOVE_BETWEEN_LANES: {
+    case MOVE_BETWEEN_LANES_WITH_NOTES: {
       const targetLane = { ...state[action.targetLaneId] };
       const sourceLane = { ...state[action.sourceLaneId] };
-      //console.log(sourceLane);
-      //console.log(action.sourceLaneId);
       const noteExistInLane = targetLane.notes.find(noteId => noteId === action.noteId);
       if (!noteExistInLane) {
         targetLane.notes = [...targetLane.notes, action.noteId];
         console.log(targetLane.notes);
         sourceLane.notes = sourceLane.notes.filter(noteId => noteId !== action.noteId);
-        //console.log(sourceLane.notes);
         return { ...state, [action.targetLaneId]: targetLane, [action.sourceLaneId]: sourceLane };
       }
     }
