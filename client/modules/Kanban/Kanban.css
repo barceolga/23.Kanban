@@ -1,11 +1,18 @@
 /* Kanban styles */
 .kanban {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+h2 {
+  font-size: 24px;
+  font-weight: 800;
+  padding: 5px;
+  color: navy;
+  text-transform: capitalize;
+}
 .AddLane {
   color: #FFF;
   background: #03A9F4;
