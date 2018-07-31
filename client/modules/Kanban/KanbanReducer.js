@@ -28,6 +28,7 @@ export default function boards(state = initialState, action){
         //console.log(newLane.notes);
         return { ...state, [action.boardId]: newBoard};
     case DELETE_LANE:
+
         const updatedBoard = { ...state[action.boardId] };
         console.log(updatedboard);
         updatedBoard.lanes = updatedBoard.lanes.filter(laneId => laneId !== action.laneId);
